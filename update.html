@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Update Student</title><link rel="stylesheet" href="style.css"></head>
+<body><h1>UPDATE STUDENT</h1><hr>
+<a href="index.html">Home</a> | <a href="list.html">List Students</a> | <a href="listOne.html">List Required Student</a> | <a href="insert.html">Insert Student</a> | <a href="update.html">Update Student</a> | <a href="delete.html">Delete Student</a><hr>
+Student Number <input type="number" id="sno"><br><br>
+Student Name <input type="text" id="name"><br><br>
+Total Marks <input type="number" id="total"><br><br>
+<button onclick="updateStudent()">Update</button>
+<button onclick="location.href='index.html'">Home Page</button>
+<p id="message"></p>
+<script>
+function updateStudent(){
+ const sno=document.getElementById('sno').value;
+ const name=document.getElementById('name').value;
+ const total=document.getElementById('total').value;
+ fetch('/students/'+sno,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({sno:sno,name:name,total:total})})
+ .then(async r=>{const t=await r.text();if(!r.ok)throw new Error(t||'Update failed');return t;})
+ .then(t=>{document.getElementById('message').textContent=t||'Student updated successfully';})
+ .catch(e=>{document.getElementById('message').textContent='Could not update student: '+e.message;});
+}
+</script></body></html>

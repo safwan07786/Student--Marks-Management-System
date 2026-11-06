@@ -1,0 +1,38 @@
+STUDENT MANAGEMENT + MYSQL CONNECTION
+
+1. Keep server.js, package.json, .env and all HTML/CSS files in this same folder.
+2. Copy .env.example to a file named .env.
+3. Open .env and set DB_PASSWORD to the password for your MySQL root account.
+   Example:
+     DB_HOST=localhost
+     DB_USER=root
+     DB_PASSWORD=your_actual_mysql_password
+     DB_NAME=studentdb
+     DB_PORT=3306
+     PORT=3000
+   Do not share your real password.
+4. In MySQL Workbench, run:
+     USE studentdb;
+     DESCRIBE students;
+   The table must have columns student_id, student_name, total.
+   If you have not created it yet, run:
+     CREATE DATABASE IF NOT EXISTS studentdb;
+     USE studentdb;
+     CREATE TABLE IF NOT EXISTS students (
+       student_id INT PRIMARY KEY,
+       student_name VARCHAR(100) NOT NULL,
+       total INT NOT NULL
+     );
+5. In VS Code terminal, from this folder run:
+     npm install
+     npm start
+6. Open http://localhost:3000 (do not use Live Server for this app).
+7. CRUD endpoints:
+   GET    /students
+   GET    /students/:sno
+   POST   /students  JSON { "sno": 1, "name": "Rahul", "total": 450 }
+   PUT    /students/:sno JSON { "sno": 1, "name": "Rahul", "total": 460 }
+   DELETE /students/:sno
+
+This backend is written to match the uploaded HTML pages' /students endpoints and their field names.
+If your existing table uses different column names, update the SQL statements in server.js to match.

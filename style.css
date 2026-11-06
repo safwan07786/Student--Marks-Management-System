@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#24263d;--muted:#73778b;--brand:#5752cf;--brand-dark:#433eb2;--bg:#f5f6fb;--line:#e5e7f0;--white:#fff;--green:#16784f;--red:#bd3446}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.55}
+body>h1{font:800 clamp(27px,4vw,36px)/1.2 'Manrope',sans-serif;letter-spacing:-.8px;margin:32px 5% 18px}
+hr{border:0;border-top:1px solid var(--line);margin:14px 5%}
+body>a{display:inline-block;margin:5px 2px 5px 5%;color:var(--brand);text-decoration:none;font-size:13px;font-weight:700}
+body>a:hover{text-decoration:underline}
+body>input{margin-left:5%;max-width:340px;width:90%;min-height:42px;padding:10px 12px;border:1px solid #dfe1ed;border-radius:9px;font:14px 'DM Sans',sans-serif}
+body>button{margin:8px 5%;border:0;border-radius:9px;padding:11px 16px;background:var(--brand);color:white;font:700 13px 'DM Sans',sans-serif;cursor:pointer}
+body>button:hover{background:var(--brand-dark)}
+table{width:90%;margin:20px auto;border-collapse:collapse;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px #25244b08;text-align:left;font-size:13px}
+th{background:#eeedff;color:#4c489e;font-weight:700}th,td{padding:13px 15px;border-bottom:1px solid var(--line)}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafaff}
+input:focus{outline:none;border-color:#7771e9;box-shadow:0 0 0 3px #7771e91b}
+@media(max-width:650px){body>h1{margin-top:24px}body>a{margin-left:5%;font-size:12px}table{font-size:12px}th,td{padding:10px 9px}}

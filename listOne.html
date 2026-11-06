@@ -1,0 +1,65 @@
+<!-- To list one student data -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>SEARCH STUDENT</h1>
+<hr>
+<a href="index.html">Home</a> |
+<a href="list.html">List Students</a> |
+<a href="listOne.html">List Required Student</a> |
+<a href="insert.html">Insert Student</a> |
+<a href="update.html">Update Student</a> |
+<a href="delete.html">Delete Student</a>
+<hr>
+
+Student Number
+<input type="number" id="sno">
+<button onclick="searchStudent()">Search</button>
+<br><br>
+
+<table border="1" id="studentTable">
+<tr>
+<th>Student Number</th>
+<th>Name</th>
+<th>Total</th>
+</tr>
+</table>
+
+<br>
+<button onclick="location.href='index.html'">Home Page</button>
+
+<script>
+function searchStudent()
+{
+let sno=document.getElementById("sno").value;
+fetch("/students/"+sno)
+.then(response=>response.json())
+.then(data=>{
+if(data.length==0)
+{
+alert("Student Not Found");
+return;
+}
+let table=document.getElementById("studentTable");
+table.innerHTML=`
+<tr>
+<th>Student Number</th>
+<th>Name</th>
+<th>Total</th>
+</tr>
+<tr>
+<td>${data[0].student_id}</td>
+<td>${data[0].student_name}</td>
+<td>${data[0].total}</td>
+</tr>
+`;
+});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!-- To list all students data -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>LIST OF STUDENTS</h1>
+<hr>
+<a href="index.html">Home</a> |
+<a href="list.html">List Students</a> |
+<a href="listOne.html">List Required Student</a> |
+<a href="insert.html">Insert Student</a> |
+<a href="update.html">Update Student</a> |
+<a href="delete.html">Delete Student</a>
+<hr>
+<button onclick="loadStudents()">
+Refresh List
+</button>
+<br><br>
+<table border="1" id="studentTable">
+    <!--Following line is Optional -->
+<!--<tr>
+<th>Student Number</th>
+<th>Name</th>
+<th>Total</th>
+</tr> -->
+</table>
+<br>
+<button onclick="location.href='index.html'">
+Home Page
+</button>
+
+<script>
+loadStudents();
+function loadStudents()
+{
+fetch("/students")  //first .then is used to convert response object to JSON format
+                    //second .then is used to extract data from JSON object
+.then(response=>response.json())
+.then(data=>{
+let table=document.getElementById("studentTable");
+table.innerHTML=`
+<tr>
+<th>Student Number</th>
+<th>Name</th>
+<th>Total</th>
+</tr>`;
+
+data.forEach(student=>{
+table.innerHTML+=`
+<tr>
+<td>${student.student_id}</td>
+<td>${student.student_name}</td>
+<td>${student.total}</td>
+</tr>
+`;
+});
+});
+}
+</script>
+</body>
+</html>

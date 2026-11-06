@@ -1,0 +1,60 @@
+<!-- To delete student data-->
+ <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>DELETE STUDENT</h1>
+<hr>
+<a href="index.html">Home</a> |
+<a href="list.html">List Students</a> |
+<a href="listOne.html">List Required Student</a> |
+<a href="insert.html">Insert Student</a> |
+<a href="update.html">Update Student</a> |
+<a href="delete.html">Delete Student</a>
+<hr>
+Student Number to Delete
+<input type="number" id="sno">
+<br><br>
+<button onclick="deleteStudent()">Delete</button>
+<br><br>
+<button onclick="location.href='index.html'">Home Page</button>
+
+<script>
+function deleteStudent()
+{
+let sno=document.getElementById("sno").value;
+
+if(confirm("Are you sure?")==false)
+return;
+
+fetch("/students/"+sno,{
+method:"DELETE"
+})
+.then(response=>{
+if(response.ok)
+return response.text();
+
+return response.text().then(message=>{
+throw new Error(message);
+});
+
+})
+.then(message=>{
+alert(message);
+location.href="index.html";
+
+})
+
+.catch(error=>{
+alert(error.message);
+
+});
+}
+
+</script>
+</body>
+</html>
